@@ -20,11 +20,13 @@ public class CalculadoraFrame extends javax.swing.JFrame {
     private double operando1;
     private double operando2;
     private double resultado;
+    private char   operacao;
     
     public CalculadoraFrame() {
         initComponents();
         operando  = "0";
         operando1 = operando2 = resultado = 0.0;
+        operacao = ' ';
     }
 
     /**
@@ -63,16 +65,46 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButtonSete.setText("7");
+        jButtonSete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperando(evt);
+            }
+        });
 
         jButtonOito.setText("8");
+        jButtonOito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperando(evt);
+            }
+        });
 
         jButtonNove.setText("9");
+        jButtonNove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperando(evt);
+            }
+        });
 
         jButtonQuatro.setText("4");
+        jButtonQuatro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperando(evt);
+            }
+        });
 
         jButtonCinco.setText("5");
+        jButtonCinco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperando(evt);
+            }
+        });
 
         jButtonSeis.setText("6");
+        jButtonSeis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperando(evt);
+            }
+        });
 
         jButtonUm.setText("1");
         jButtonUm.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +114,18 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         });
 
         jButtonDois.setText("2");
+        jButtonDois.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperando(evt);
+            }
+        });
 
         jButtonTres.setText("3");
+        jButtonTres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperando(evt);
+            }
+        });
 
         jButtonZero.setText("0");
         jButtonZero.addActionListener(new java.awt.event.ActionListener() {
@@ -106,16 +148,36 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         jButtonMultiplicacao.setText("×");
 
         jButtonSubtracao.setText("–");
+        jButtonSubtracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperacao(evt);
+            }
+        });
 
         jButtonAdicao.setText("+");
+        jButtonAdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperacao(evt);
+            }
+        });
 
         jButtonLimpar.setText("Limpar");
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpaTudo(evt);
+            }
+        });
 
         jButtonRaizQuadrada.setText("√");
 
         jButtonPotenciaQuadrada.setText(" x²");
 
         jButtonIgual.setText("=");
+        jButtonIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                operacaoIgual(evt);
+            }
+        });
 
         jLabelVisorOperacao.setFont(new java.awt.Font("Cantarell", 0, 24)); // NOI18N
         jLabelVisorOperacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -253,10 +315,150 @@ public class CalculadoraFrame extends javax.swing.JFrame {
             } else {
                 operando += "1";
             }
-        } 
+        }
+        
+        if (evt.getSource() == jButtonDois) {
+            if (operando.equalsIgnoreCase("0")) {
+                operando = "2";
+            } else {
+                operando += "2";
+            }
+        }
+        
+        if (evt.getSource() == jButtonTres) {
+            if (operando.equalsIgnoreCase("0")) {
+                operando = "3";
+            } else {
+                operando += "3";
+            }
+        }
+        
+        if (evt.getSource() == jButtonQuatro) {
+            if (operando.equalsIgnoreCase("0")) {
+                operando = "4";
+            } else {
+                operando += "4";
+            }
+        }
+        
+        if (evt.getSource() == jButtonCinco) {
+            if (operando.equalsIgnoreCase("0")) {
+                operando = "5";
+            } else {
+                operando += "5";
+            }
+        }
+        
+        if (evt.getSource() == jButtonSeis) {
+            if (operando.equalsIgnoreCase("0")) {
+                operando = "6";
+            } else {
+                operando += "6";
+            }
+        }
+        
+        if (evt.getSource() == jButtonSete) {
+            if (operando.equalsIgnoreCase("0")) {
+                operando = "7";
+            } else {
+                operando += "7";
+            }
+        }
+        
+        if (evt.getSource() == jButtonOito) {
+            if (operando.equalsIgnoreCase("0")) {
+                operando = "8";
+            } else {
+                operando += "8";
+            }
+        }
+        
+        if (evt.getSource() == jButtonNove) {
+            if (operando.equalsIgnoreCase("0")) {
+                operando = "9";
+            } else {
+                operando += "9";
+            }
+        }
+        
         this.setVisor(operando);
         
     }//GEN-LAST:event_setOperando
+
+    private void setOperacao(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setOperacao
+        String visor = "";
+        
+        if(evt.getSource() == jButtonAdicao) {
+            if(jLabelResultados.getText().equals("") || operacao == '=') {
+                resultado = Double.parseDouble(operando);
+                operacao = '+';
+                operando = "";
+                visor = operando+"+";
+            } else {
+                if(!operando.equals("")) {
+                    resultado = this.realizaOperacao(operando,operacao);
+                    operacao = '+';
+                    operando = "";
+                    visor = operando+"+";
+                } else {
+                    operacao = '+';
+                    resultado = this.realizaOperacao(""+resultado, operacao);
+                    visor = operando+"+";
+                }  
+            }
+        }
+        
+        if(evt.getSource() == jButtonSubtracao) {
+            if(jLabelResultados.getText().equals("") || operacao == '=') {
+                resultado = Double.parseDouble(operando);
+                operacao = '-';
+                operando = "";
+                visor = operando+"-";
+            } else {
+                if(!operando.equals("")) {
+                    resultado = this.realizaOperacao(operando,operacao);
+                    operacao = '-';
+                    operando = "";
+                    visor = operando+"-";
+                } else {
+                    operacao = '-';
+                    resultado = this.realizaOperacao(""+resultado, operacao);
+                    visor = operando+"-";
+                }  
+            }
+        }
+        
+        this.setVisor(visor);
+        this.setVisorResultado(resultado);
+    }//GEN-LAST:event_setOperacao
+
+    private void limpaTudo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpaTudo
+        this.jLabelResultados.setText("");
+        this.jLabelVisorOperacao.setText("");
+        this.operacao = ' ';
+        this.operando = "";
+        this.resultado = 0.0;
+    }//GEN-LAST:event_limpaTudo
+
+    private void operacaoIgual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacaoIgual
+        String visor = "";
+        if(!jLabelResultados.getText().equals("") && !operando.equals("")){
+            resultado = realizaOperacao(operando, operacao);
+            operacao = '=';
+            operando = "";
+            visor = operando+"=";
+        } else if(operando.equals("")){
+            operacao = '=';
+            visor = operando+"=";
+        }else {
+            resultado = Double.parseDouble(operando);
+            operacao = '=';
+            operando = "";
+            visor = operando+"=";
+        }
+        this.setVisor(visor);
+        this.setVisorResultado(resultado);
+    }//GEN-LAST:event_operacaoIgual
 
     /**
      * @param args the command line arguments
@@ -321,5 +523,20 @@ public class CalculadoraFrame extends javax.swing.JFrame {
 
     private void setVisor(String operando) {
         jLabelVisorOperacao.setText(operando);
+    }
+
+    private void setVisorResultado(double resultado) {
+        jLabelResultados.setText(""+resultado);
+    }
+
+    private double realizaOperacao(String operando, char operacao) {
+        switch(operacao) {
+            case '+':
+                return resultado + Double.parseDouble(operando);
+            case '-':
+                return resultado - Double.parseDouble(operando);
+            
+        }
+        return -1.0;
     }
 }
