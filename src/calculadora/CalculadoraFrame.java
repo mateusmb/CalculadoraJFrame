@@ -144,8 +144,18 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         jButtonPorcentagem.setText("%");
 
         jButtonDivisao.setText("÷");
+        jButtonDivisao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperacao(evt);
+            }
+        });
 
         jButtonMultiplicacao.setText("×");
+        jButtonMultiplicacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperacao(evt);
+            }
+        });
 
         jButtonSubtracao.setText("–");
         jButtonSubtracao.addActionListener(new java.awt.event.ActionListener() {
@@ -169,8 +179,18 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         });
 
         jButtonRaizQuadrada.setText("√");
+        jButtonRaizQuadrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperacao(evt);
+            }
+        });
 
         jButtonPotenciaQuadrada.setText(" x²");
+        jButtonPotenciaQuadrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperacao(evt);
+            }
+        });
 
         jButtonIgual.setText("=");
         jButtonIgual.addActionListener(new java.awt.event.ActionListener() {
@@ -296,7 +316,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
     private void setOperando(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setOperando
         // TODO add your handling code here:
         if (evt.getSource() == jButtonZero) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "0";
             } else {
                 operando += "0";
@@ -310,7 +331,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if (evt.getSource() == jButtonUm) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "1";
             } else {
                 operando += "1";
@@ -318,7 +340,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if (evt.getSource() == jButtonDois) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "2";
             } else {
                 operando += "2";
@@ -326,7 +349,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if (evt.getSource() == jButtonTres) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "3";
             } else {
                 operando += "3";
@@ -334,7 +358,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if (evt.getSource() == jButtonQuatro) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "4";
             } else {
                 operando += "4";
@@ -342,7 +367,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if (evt.getSource() == jButtonCinco) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "5";
             } else {
                 operando += "5";
@@ -350,7 +376,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if (evt.getSource() == jButtonSeis) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "6";
             } else {
                 operando += "6";
@@ -358,7 +385,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if (evt.getSource() == jButtonSete) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "7";
             } else {
                 operando += "7";
@@ -366,7 +394,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if (evt.getSource() == jButtonOito) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "8";
             } else {
                 operando += "8";
@@ -374,7 +403,8 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if (evt.getSource() == jButtonNove) {
-            if (operando.equalsIgnoreCase("0")) {
+            if (operando.equalsIgnoreCase("0") || operacao != ' ' && 
+                    !jLabelVisorOperacao.getText().matches("(.*).")) {
                 operando = "9";
             } else {
                 operando += "9";
@@ -389,13 +419,21 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         String visor = "";
         
         if(evt.getSource() == jButtonAdicao) {
-            if(jLabelResultados.getText().equals("") || operacao == '=') {
+            if(jLabelResultados.getText().equals("")) {
                 resultado = Double.parseDouble(operando);
                 operacao = '+';
                 operando = "";
                 visor = operando+"+";
-            } else {
-                if(!operando.equals("")) {
+            } else if (operacao == '='){
+                operacao = '+';
+                operando = "";
+                visor = operando+"+";
+            }else {
+                if(jLabelVisorOperacao.getText().matches("(.*)²") || 
+                        jLabelVisorOperacao.getText().matches("√(.*)")) {
+                    operacao = '/';
+                    visor = operando+"/";
+                } else if(!operando.equals("")) {
                     resultado = this.realizaOperacao(operando,operacao);
                     operacao = '+';
                     operando = "";
@@ -409,13 +447,21 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         }
         
         if(evt.getSource() == jButtonSubtracao) {
-            if(jLabelResultados.getText().equals("") || operacao == '=') {
+            if(jLabelResultados.getText().equals("")) {
                 resultado = Double.parseDouble(operando);
                 operacao = '-';
                 operando = "";
                 visor = operando+"-";
-            } else {
-                if(!operando.equals("")) {
+            } else if (operacao == '='){
+                operacao = '-';
+                operando = "";
+                visor = operando+"-";
+            }else {
+                if(jLabelVisorOperacao.getText().matches("(.*)²") || 
+                        jLabelVisorOperacao.getText().matches("√(.*)")) {
+                    operacao = '/';
+                    visor = operando+"/";
+                } else if(!operando.equals("")) {
                     resultado = this.realizaOperacao(operando,operacao);
                     operacao = '-';
                     operando = "";
@@ -425,6 +471,89 @@ public class CalculadoraFrame extends javax.swing.JFrame {
                     resultado = this.realizaOperacao(""+resultado, operacao);
                     visor = operando+"-";
                 }  
+            }
+        }
+        
+        if(evt.getSource() == jButtonMultiplicacao) {
+            if(jLabelResultados.getText().equals("")) {
+                resultado = Double.parseDouble(operando);
+                operacao = '*';
+                operando = "";
+                visor = operando+"*";
+            } else if (operacao == '='){
+                operacao = '*';
+                operando = "";
+                visor = operando+"*";
+            }else {
+                if(jLabelVisorOperacao.getText().matches("(.*)²") || 
+                        jLabelVisorOperacao.getText().matches("√(.*)")) {
+                    operacao = '/';
+                    visor = operando+"/";
+                } else if(!operando.equals("")) {
+                    resultado = this.realizaOperacao(operando,operacao);
+                    operacao = '*';
+                    operando = "";
+                    visor = operando+"*";
+                } else {
+                    operacao = '*';
+                    resultado = this.realizaOperacao(""+resultado, operacao);
+                    visor = operando+"*";
+                }  
+            }
+        }
+        
+        if(evt.getSource() == jButtonDivisao) {
+            if(jLabelResultados.getText().equals("")) {
+                resultado = Double.parseDouble(operando);
+                operacao = '/';
+                operando = "";
+                visor = operando+"/";
+            } else if (operacao == '='){
+                operacao = '/';
+                operando = "";
+                visor = operando+"/";
+            }else {
+                if(jLabelVisorOperacao.getText().matches("(.*)²") || 
+                        jLabelVisorOperacao.getText().matches("√(.*)")) {
+                    operacao = '/';
+                    visor = operando+"/";
+                } else if(!operando.equals("")) {
+                    resultado = this.realizaOperacao(operando,operacao);
+                    operacao = '/';
+                    operando = "";
+                    visor = operando+"/";
+                } else {
+                    System.out.println("oi");
+                    operacao = '/';
+                    resultado = this.realizaOperacao(""+resultado, operacao);
+                    visor = operando+"/";
+                }  
+            }
+        }
+        
+        if(evt.getSource() == jButtonPotenciaQuadrada) {
+            if(!jLabelVisorOperacao.getText().equals("") && jLabelResultados.getText().equals("")) {
+                resultado = Math.pow(Double.parseDouble(jLabelVisorOperacao.getText()), 2.0);
+                visor = jLabelVisorOperacao.getText() + "²";
+            } else if (!jLabelResultados.getText().equals("")) {
+                resultado = Math.pow(Double.parseDouble(jLabelResultados.getText()), 2.0);
+                visor = jLabelResultados.getText() + "²";
+            } else {
+                resultado = Math.pow(0.0, 2.0);
+                visor = 0.0 + "²";
+            }
+        }
+        
+        if(evt.getSource() == jButtonRaizQuadrada) {
+            if(!jLabelVisorOperacao.getText().equals("") && jLabelResultados.getText().equals("")) {
+                resultado = Math.sqrt(Double.parseDouble(jLabelVisorOperacao.getText()));
+                visor = "√" + jLabelVisorOperacao.getText();
+            } else if (!jLabelResultados.getText().equals("")) {
+                resultado = Math.sqrt(Double.parseDouble(jLabelResultados.getText()));
+                visor = "√" + jLabelResultados.getText();
+            } else {
+                resultado = Math.sqrt(0.0);
+                visor = "√" + 0.0;
             }
         }
         
@@ -535,8 +664,16 @@ public class CalculadoraFrame extends javax.swing.JFrame {
                 return resultado + Double.parseDouble(operando);
             case '-':
                 return resultado - Double.parseDouble(operando);
-            
+            case '*':
+                return resultado * Double.parseDouble(operando);
+            case '/':
+                return Double.parseDouble(operando) != 0 ? resultado / Double.parseDouble(operando) : erroDivisaoPorZero();
         }
         return -1.0;
+    }
+
+    private double erroDivisaoPorZero() {
+        jLabelVisorOperacao.setText("Erro! Divisão por zero!");
+        throw new IllegalArgumentException("Divisão por zero!"); 
     }
 }

@@ -239,11 +239,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xf7;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setOperacao"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonMultiplicacao">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xd7;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setOperacao"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSubtracao">
           <Properties>
@@ -273,11 +279,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x221a;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setOperacao"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonPotenciaQuadrada">
           <Properties>
             <Property name="text" type="java.lang.String" value=" x&#xb2;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setOperacao"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonIgual">
           <Properties>
