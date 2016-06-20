@@ -142,6 +142,11 @@ public class CalculadoraFrame extends javax.swing.JFrame {
         });
 
         jButtonPorcentagem.setText("%");
+        jButtonPorcentagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setOperacao(evt);
+            }
+        });
 
         jButtonDivisao.setText("÷");
         jButtonDivisao.addActionListener(new java.awt.event.ActionListener() {
@@ -554,6 +559,18 @@ public class CalculadoraFrame extends javax.swing.JFrame {
             } else {
                 resultado = Math.sqrt(0.0);
                 visor = "√" + 0.0;
+            }
+        }
+        
+        if(evt.getSource() == jButtonPorcentagem) {
+            if(!jLabelResultados.getText().equals("") && 
+                    !jLabelVisorOperacao.getText().equals("") && 
+                    !jLabelVisorOperacao.getText().matches("(.*)²") && 
+                    !jLabelVisorOperacao.getText().matches("√(.*)") && 
+                    (operacao != ' ' || operacao != '=')) {
+                operando = ""+resultado * (Double.parseDouble(jLabelVisorOperacao.getText())/100);
+                resultado = this.realizaOperacao(operando, operacao);
+                operacao = '=';
             }
         }
         
